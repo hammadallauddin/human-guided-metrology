@@ -51,11 +51,27 @@ human-guided-meteorology/
 
 ## Configuration
 
-Create a `.env` file with your Google Gemini API key:
+Create a `.env` file with your Google Gemini and LangSmith API keys:
 
 ```env
-GEMINI_API_KEY=your_gemini_api_key_here
+# Google Gemini Configuration
+GOOGLE_API_KEY=your_gemini_api_key_here
+GOOGLE_MODEL=gemini-2.5-flash
+
+# LangSmith Configuration (Optional)
+LANGSMITH_TRACING=true
+LANGSMITH_API_KEY=your_langsmith_api_key_here
+LANGSMITH_PROJECT=your_project_name
 ```
+
+### Required Environment Variables
+- `GOOGLE_API_KEY`: Your Google Gemini API key (required)
+- `GOOGLE_MODEL`: Gemini model to use (default: gemini-2.5-flash)
+
+### Optional Environment Variables
+- `LANGSMITH_TRACING`: Enable LangSmith tracing (default: false)
+- `LANGSMITH_API_KEY`: LangSmith API key for monitoring
+- `LANGSMITH_PROJECT`: LangSmith project name
 
 ## Usage
 
@@ -77,7 +93,7 @@ workflow = AgentWorkflow()
 response = workflow.invoke("Ask the user where they are, then look up the weather there")
 
 # Resume with human response
-response = workflow.resume("San Francisco, California")
+response = workflow.resume("Karachi")
 ```
 
 ## Testing
